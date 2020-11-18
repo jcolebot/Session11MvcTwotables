@@ -1,0 +1,76 @@
+@model IEnumerable<CartoonDB.Models.Show>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Network)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArtisticDirector)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Start)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.End)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                Characters
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var show in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => show.Network)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => show.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => show.ArtisticDirector)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => show.Start)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => show.End)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => show.Genre)
+            </td>
+            <td>
+                <ul>
+                    @foreach (var character in show.Characters)
+                    {
+                        <li>@character.Name</li>
+                    }
+                </ul>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@show.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@show.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@show.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
